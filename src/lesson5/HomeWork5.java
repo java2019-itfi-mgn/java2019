@@ -24,7 +24,7 @@ public class HomeWork5 {
         frame.add(splitPane);
         frame.setSize(1024,500);
 
-        File file = new File("D:/");
+        File file = new File("D:/railroad pioneer");
         createTable(file, splitPane); // начальное значение таблицы
 
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(file, true);
