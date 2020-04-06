@@ -37,6 +37,7 @@ public class JTreeTest {
 		root.add(root2);
 		root.add(root3);
 
+	
 		tree.setRootVisible(true);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
