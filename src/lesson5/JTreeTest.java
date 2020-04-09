@@ -1,18 +1,26 @@
 package lesson5;
 
+
 import java.awt.Component;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.SwingWorker;
+import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.event.TreeWillExpandListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.ExpandVetoException;
 import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeNode;
 
 public class JTreeTest {
 
@@ -45,6 +53,38 @@ public class JTreeTest {
 				// TODO Auto-generated method stub
 //				DefaultMutableTreeNode dmtn = (DefaultMutableTreeNode)e.getNewLeadSelectionPath().getLastPathComponent();
 				System.err.println("Changed: ");//+((File)dmtn.getUserObject()).getName());
+			}
+		});
+		
+		tree.addTreeWillExpandListener(new TreeWillExpandListener() {
+			@Override
+			public void treeWillExpand(TreeExpansionEvent event) throws ExpandVetoException {
+		        final DefaultMutableTreeNode lazyNode = (DefaultMutableTreeNode) event.getPath().getLastPathComponent();
+		        
+		        if (/*Need to load?*/true) {
+			        new SwingWorker<List<DefaultMutableTreeNode>, Void>(){
+			            @Override
+			            protected List<DefaultMutableTreeNode> doInBackground() throws Exception {
+			                // TODO Auto-generated method stub
+			                return new ArrayList<>();// Load content
+			            }
+			            
+			            protected void done() {
+			                try {
+			                    for (DefaultMutableTreeNode node : get()) {
+			                        ((DefaultTreeModel)tree.getModel()).insertNodeInto(node, lazyNode, lazyNode.getChildCount());
+			                    }
+			                } catch (Exception e) {
+			                    e.printStackTrace();
+			                }
+			            }
+			        }.execute();
+		        }
+			}
+			
+			@Override
+			public void treeWillCollapse(TreeExpansionEvent event) throws ExpandVetoException {
+				// TODO Auto-generated method stub
 			}
 		});
 		
