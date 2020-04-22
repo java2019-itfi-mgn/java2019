@@ -37,7 +37,7 @@ public class Asterisks extends JComponent {
 								new double[]{0.25, -0.25},
 								new double[]{1.0, 0.0}
 							};
-	
+
 	@Override
 	public void paintComponent(final Graphics g) {	// <2>
 		final Graphics2D		g2d = (Graphics2D)g;
