@@ -136,7 +136,9 @@ public class MyClass{
         }
     }
     static void Close()
-    {frame.setVisible(false);
+    {
+        frame.setVisible(false);
+        System.exit(0);
     }
     static void AboutProgram()
     { JOptionPane.showMessageDialog(frame,"Version 1.2" );
