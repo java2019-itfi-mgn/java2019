@@ -1,4 +1,4 @@
-package lesson9_Pridannikov;
+package lesson9.lesson9_Pridannikov;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
