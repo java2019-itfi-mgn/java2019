@@ -16,10 +16,12 @@ public class EvalScript {
         
         engine.eval("print('Hello, World');\n"		// <5>
         		  + "print('Name='+file.getName());"
-        		  + "function call(parm){print('Call: '+parm);}"
+        		  + "function корень(parm){return java.lang.Math.sqrt(parm);}"
+        		  + "function call(parm){print('Call: '+корень(10.0));}"
         		  + "var myObj = new Object(); myObj.run = function() { print('run called'); }");        
         
         inv.invokeFunction("call", "My parameter" );	// <6>
+        inv.invokeFunction("корень", 25 );	// <6>
         
         final Object				obj = engine.get("myObj");	// <7>
         final Runnable				r = inv.getInterface(obj,Runnable.class);	// <8>
