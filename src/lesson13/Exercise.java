@@ -11,6 +11,9 @@ public class Exercise {
 		// 1. toUpperCase()
 		// 2. toLowerCase()
 		// 3. amountOfStringProcessed
+		// 4. Free memory
+		// 5. available memory
+		// 6. startGC()
 	}
 
 }
